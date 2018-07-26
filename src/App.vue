@@ -37,9 +37,9 @@
 
   import store from './store/store.js'
   import AV from './lib/leancloud.js'
-  import getAVUser from './lib/getAVUser.js'
+ import getAVUser from './lib/getAVUser.js'
 
-  // getAVUser();
+   getAVUser();
   export default {
     name: 'App',
     store,

@@ -1,9 +1,12 @@
 import AV from './leancloud.js'
 
-export default function(user){
-  let {id, attributes: {username}} = user || AV.User.current() || {attributes: {}};
-  return {
-    id: id || '',
-    username: username||''
+export default function() {
+  let AVUser = AV.User.current();
+  if (AVUser) {
+    let {id, attributes: {username}} = AVUser;
+    return { id, username}
+  } else {
+    return {id: '',username: ''}
   }
+
 }
