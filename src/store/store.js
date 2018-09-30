@@ -25,15 +25,15 @@ export default new Vuex.Store({
       project: '项目经历',
       workHistory: '工作经历',
       skill: '技能',
-      contact: '联系方式'
+      evaluation: '自我评价'
     },
     labels: {
       name: '姓名',
-      address: '地址',
+      address: '地址 （选填）',
       degree: '学历',
       jobIntention: '求职意向',
-      GitHub: 'GitHub',
-      blog: '博客',
+      GitHub: 'GitHub （选填）',
+      blog: '博客 （选填）',
       duration: '时间',
       school: '学校',
       major: '专业',
@@ -42,10 +42,11 @@ export default new Vuex.Store({
       company: '公司',
       content: '工作内容',
       skillName: '技能',
-      QQ: 'QQ',
-      WeChat: '微信',
+      QQ: 'QQ （选填）',
+      WeChat: '微信 （选填)',
       Phone: '联系电话',
-      eMail: '邮箱'
+      eMail: '邮箱',
+      evaluation: '自我评价'
     },
 
     resume: {
@@ -55,74 +56,39 @@ export default new Vuex.Store({
         {title: 'project', icon: 'project'},
         {title: 'workHistory', icon: 'workHistory'},
         {title: 'skill', icon: 'skill'},
-        {title: 'contact', icon: 'contact'}
+        {title: 'evaluation', icon: 'write'}
+       
       ],
       profile: {
-        name: '',
-        address: '',
-        degree: '',
-        jobIntention: '',
-        GitHub: '',
-        blog: ''
+        name: '念念',
+        degree: '本科',
+        jobIntention: '前端开发工程师',
+        Phone: 'xxxxxxxx',
+        eMail: '1969563716@qq.com',
+        QQ: '',
+        WeChat: '15927496463',
+        GitHub: 'https://arya1957.github.io/blog/list.html',
+        blog: 'https://www.jianshu.com/u/437babbccf99',
+        address: ''
       },
       education: [
-        {duration: '', school: '', major: ''}
+        {duration: 'xxxx ~ xxxx', school: 'xx大学', major: 'xx专业'}
       ],
       project: [
-        {projectName: '', projectIntro: ''},
+        {projectName: 'xxxx', projectIntro: '详细描述你的职责范围、任务及取得的成绩，工作经验的时间采取倒叙形式，最近经历写在前面，描述尽量具体简洁，工作经验的描述与目标岗位的招聘要求尽量匹配，用词精准。'},
       ],
       workHistory: [
-        {duration: '', company: '', job: '', content: ''},
-        {duration: '', company: '', job: '', content: ''}
+        {duration: 'xxxx ~ xxxx', company: 'ABC company', job: 'web 前端开发', content: '详细描述你的职责范围、工作任务及取得的成绩，工作经验的时间采取倒叙形式，最近经历写在前面，描述尽量具体简洁，工作经验的描述与目标岗位的招聘要求尽量匹配，用词精准。'},
+        {duration: 'xxxx ~ xxxx', company: 'DEF company', job: 'web 前端开发', content: '详细描述你的职责范围、工作任务及取得的成绩，工作经验的时间采取倒叙形式，最近经历写在前面，描述尽量具体简洁，工作经验的描述与目标岗位的招聘要求尽量匹配，用词精准。'}
       ],
       skill: [
-        {skillName: ''},
+        {skillName: 'xxxxxxxxxxx'},
+        {skillName: 'xxxxxxxxxxx'}
       ],
-      contact: {
-        QQ: '',
-        WeChat: '',
-        Phone: '',
-        eMail: ''
-      }
+      evaluation: [
+        {evaluation: '篇幅不要太长，注意结合简历整体的美观度，如果真的有很多话要说，建议以求职信的形式附上。自我评价应做到突出自身符合目标岗位要求的“卖点”，避免过多使用形容词，而应该通过数据及实例来对自身价值进行深化。'}
+      ]
     }
-
-    // resume: {
-    //   config: [
-    //     {title: 'profile', icon: 'profile'},
-    //     {title: 'education', icon: 'education'},
-    //     {title: 'project', icon: 'project'},
-    //     {title: 'workHistory', icon: 'workHistory'},
-    //     {title: 'skill', icon: 'skill'},
-    //     {title: 'contact', icon: 'contact'}
-    //   ],
-    //   profile: {
-    //     name: '石头',
-    //     address: '深圳xxx区',
-    //     degree: '本科',
-    //     jobIntention: '前端工程师',
-    //     GitHub: 'https://github.com/',
-    //     blog: 'https://www.jianshu.com/u/437babbccf99'
-    //   },
-    //   education: [
-    //     {duration: '2010~2014', school: 'xxxxxxx学校', major: 'xxxx专业'}
-    //   ],
-    //   project: [
-    //     {projectName: 'DEF', projectIntro: 'XXXXXX'},
-    //   ],
-    //   workHistory: [
-    //     {duration: '201x-201x', company: 'DEF公司', job: '前端工程师', content: '工作内容是XXXXXX'},
-    //     {duration: '201x-201x', company: 'ABC公司', job: '前端工程师', content: '工作内容是XXX'}
-    //   ],
-    //   skill: [
-    //     {skillName: '技能 xxxxx'},
-    //   ],
-    //   contact: {
-    //     QQ: '12345678',
-    //     WeChat: '833677889944',
-    //     Phone: '12345678901',
-    //     eMail: '13467900@qq.com'
-    //   }
-    // }
 
   },
   mutations: {
@@ -134,47 +100,54 @@ export default new Vuex.Store({
     removeUser(state) {
       state.user.id = '';
       state.dataSaved = true;
-      state.resume = {
+      state.resume =  {
         config: [
           {title: 'profile', icon: 'profile'},
           {title: 'education', icon: 'education'},
           {title: 'project', icon: 'project'},
           {title: 'workHistory', icon: 'workHistory'},
           {title: 'skill', icon: 'skill'},
-          {title: 'contact', icon: 'contact'}
+          {title: 'evaluation', icon: 'write'}
+         
         ],
         profile: {
-          name: '',
-          address: '',
-          degree: '',
-          jobIntention: '',
-          GitHub: '',
-          blog: ''
+          name: '念念',
+          degree: '本科',
+          jobIntention: '前端开发工程师',
+          Phone: 'xxxxxxxx',
+          eMail: '1969563716@qq.com',
+          QQ: '',
+          WeChat: '15927496463',
+          GitHub: 'https://arya1957.github.io/blog/list.html',
+          blog: 'https://www.jianshu.com/u/437babbccf99',
+          address: ''
         },
         education: [
-          {duration: '', school: '', major: ''}
+          {duration: 'xxxx ~ xxxx', school: 'xx大学', major: 'xxxx'}
         ],
         project: [
-          {projectName: '', projectIntro: ''},
+          {projectName: 'xxxx', projectIntro: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'},
         ],
         workHistory: [
-          {duration: '', company: '', job: '', content: ''},
-          {duration: '', company: '', job: '', content: ''}
+          {duration: 'xxxx ~ xxxx', company: 'ABC company', job: 'web 前端开发', content: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'},
+          {duration: 'xxxx ~ xxxx', company: 'DEF company', job: 'web 前端开发', content: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'}
         ],
         skill: [
-          {skillName: ''},
+          {skillName: 'xxxxxxxxxxx'},
+          {skillName: 'xxxxxxxxxxx'}
         ],
-        contact: {
-          QQ: '',
-          WeChat: '',
-          Phone: '',
-          eMail: ''
-        }
-      };
+        evaluation: [
+          {evaluation: 'xxxxxxx'}
+        ]
+      }
+     
      // localStorage.setItem('state', JSON.stringify(state));
     },
     setResume(state, {id, resume}) {
       state.resume.id = id;
+      console.log(state.resume)
+      console.log(resume)
+
       Object.assign(state.resume, resume);
       //    localStorage.setItem('state', JSON.stringify(state));
     },

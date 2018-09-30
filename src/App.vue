@@ -1,18 +1,12 @@
 <template>
   <div id="app" v-bind:class="{previewMode: previewMode}">
     <div class="page">
-      <TopBar class="topbar" v-on:preview="preview"
-              v-show="previewMode === false"></TopBar>
+        <el-button class="exitPreview" type="danger" v-show="previewMode === true" v-on:click="exitPreview">退出预览
+       </el-button>
+      <TopBar class="topbar" v-on:preview="preview" v-show="previewMode === false"></TopBar>
       <main>
         <Editor class="editor" v-show="previewMode === false"></Editor>
-        <Preview class="preview"
-                 v-bind:previewMode="previewMode"
-                 v-on:exitPreview="exitPreview">
-          <el-button class="exitPreview"
-                     type="danger"
-                     v-show="previewMode === true"
-                     v-on:click="exitPreview">退出预览
-          </el-button>
+        <Preview class="preview" v-bind:previewMode="previewMode" v-on:exitPreview="exitPreview">
         </Preview>
       </main>
       <div class=" save-alerts">
@@ -31,195 +25,198 @@
 </template>
 
 <script>
-  import TopBar from './components/TopBar.vue'
-  import Editor from './components/Editor.vue'
-  import Preview from './components/Preview.vue'
+import TopBar from "./components/TopBar.vue";
+import Editor from "./components/Editor.vue";
+import Preview from "./components/Preview.vue";
 
-  import store from './store/store.js'
-  import AV from './lib/leancloud.js'
- import getAVUser from './lib/getAVUser.js'
+import store from "./store/store.js";
+import AV from "./lib/leancloud.js";
+import getAVUser from "./lib/getAVUser.js";
 
-   getAVUser();
-  export default {
-    name: 'App',
-    store,
-    //  通过在根实例中注册 store 选项，该 store 实例会注入到根组件下的所有子组件中，且子组件能通过 this.$store 访问到。
-    components: {TopBar, Editor, Preview},
-    data() {
-      return {
-        previewMode: false,
-      }
-    },
-    created() {
-      localStorage.getItem("state") && this.$store.replaceState(Object.assign(this.$store.state, JSON.parse(localStorage.getItem("state"))));
-      //在页面关闭/刷新时将vuex里的信息保存到localStorage里
-      window.addEventListener("beforeunload", () => {
-        localStorage.setItem("state", JSON.stringify(this.$store.state));
-      })
+getAVUser();
+export default {
+  name: "App",
+  store,
+  //  通过在根实例中注册 store 选项，该 store 实例会注入到根组件下的所有子组件中，且子组件能通过 this.$store 访问到。
+  components: { TopBar, Editor, Preview },
+  data() {
+    return {
+      previewMode: false
+    };
+  },
+  created() {
+    //在页面加载时读取localStorage里的状态信息
+    console.log(this.$store.state);
 
+    // localStorage.getItem("state") && this.$store.replaceState(Object.assign(this.$store.state, JSON.parse(localStorage.getItem("state"))));
+    // //在页面关闭/刷新时将vuex里的信息保存到localStorage里
+    // window.addEventListener("beforeunload", () => {
+    //   localStorage.setItem("state", JSON.stringify(this.$store.state));
+    // })
+  },
+  computed: {
+    saveSuccess() {
+      return this.$store.state.saveSuccess;
     },
-    computed: {
-      saveSuccess() {
-        return this.$store.state.saveSuccess
-      },
-      saveError() {
-        return this.$store.state.saveError
-      }
+    saveError() {
+      return this.$store.state.saveError;
+    }
+  },
+  methods: {
+    preview() {
+      this.previewMode = true;
     },
-    methods: {
-      preview() {
-        this.previewMode = true
-      },
-      exitPreview() {
-        this.previewMode = false
-      }
+    exitPreview() {
+      this.previewMode = false;
     }
   }
-
-
+};
 </script>
 
 <style lang="scss">
-  html, body, #app {
-    height: 100%; // height: 100vh 的代替方案
-    overflow: auto;
-  }
+html,
+body,
+#app {
+  height: 100%; // height: 100vh 的代替方案
+  overflow: auto;
+}
 
-  #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-  }
+#app {
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
 
-  #app .page {
+#app .page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  > .topbar {
+    height: 80px;
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.4);
+    z-index: 1;
+  }
+  > .exitPreview {
+       position: fixed;
+       top: 10px;
+       right: 10px;
+      }
+
+  > main {
+    min-width: 1024px;
+    max-width: 1440px;
+    width: 100%;
+    align-self: center; //这两句是为了修复当分辨率大于1440时，main不居中的问题
+    flex: 1;
+    background: #efefef;
     display: flex;
-    flex-direction: column;
-    height: 100%;
-    > .topbar {
-      height: 80px;
-      box-shadow: 0 0 3px 0 rgba(0, 0, 0, .4);
-      z-index: 1;
-    }
+    padding: 16px;
 
-    > main {
-      min-width: 1024px;
-      max-width: 1440px;
-      width: 100%;
-      align-self: center; //这两句是为了修复当分辨率大于1440时，main不居中的问题
-      flex: 1;
-      background: #efefef;
-      display: flex;
-      padding: 16px;
-
-      .editor {
-        width: 32em;
-        margin-right: 16px;
-        box-shadow: 0 0 3px 0 rgba(0, 0, 0, .4);
-        border-radius: 4px;
-        background: #fff;
-      }
-
-      .preview {
-        flex: 1;
-        box-shadow: 0 0 3px 0 rgba(0, 0, 0, .4);
-        border-radius: 4px;
-        background: #fff;
-      }
-
-    }
-    > .save-alerts {
-      position: absolute;
-      background: rgba(0, 0, 0, 0.2);
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-
-      > div > i {
-        font-size: 16px;
-        margin-right: 8px;
-      }
-
-      .success {
-        background: #f0f9eb;
-        color: #67c23a;
-
-      }
-      .error {
-        background-color: #fef0f0;
-        color: #f56c6c;
-      }
-    }
-
-    .save-alerts > .success, .save-alerts > .error {
-      width: 300px;
-      height: 40px;
-      line-height: 40px;
-      font-size: 14px;
-    }
-
-  }
-
-  #app.previewMode {
-    .preview {
-      margin: 24px auto;
-      max-width: 900px;
-      .exitPreview {
-        position: absolute;
-        top: 16px;
-        right: 24px;
-      }
-    }
-  }
-
-  .page {
-    .icon {
-      width: 1em;
-      height: 1em;
-      vertical-align: -0.15em;
-      fill: currentColor;
-      overflow: hidden;
-    }
-
-    label {
-      color: #606266;
-      display: block;
-      margin: 8px 0;
-      font-size: 14px;
-      text-align: left;
-
-    }
-
-    input[type='text'], input[type='password'], textarea {
-      color: #606266;
-      font-size: 14px;
-      width: 100%;
-      outline: none;
-      margin: 8px 0;
-      padding: 0 16px;
-      border: 1px solid #dcdfe6;
+    .editor {
+      width: 32em;
+      margin-right: 16px;
+      box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.4);
       border-radius: 4px;
+      background: #fff;
     }
 
-    input[type='text']:focus, input[type='password']:focus, textarea:focus {
-      border: 1px solid #3e80eb;
+    .preview {
+      flex: 1;
+      box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.4);
+      border-radius: 4px;
+      background: #fff;
+    
+    }
+  }
+  > .save-alerts {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.2);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    > div > i {
+      font-size: 16px;
+      margin-right: 8px;
     }
 
-    input[type='text'], input[type='password'] {
-      line-height: 40px;
-      height: 40px;
+    .success {
+      background: #f0f9eb;
+      color: #67c23a;
     }
-
-    textarea {
-      line-height: 24px;
+    .error {
+      background-color: #fef0f0;
+      color: #f56c6c;
     }
-
-    input[type='submit'] {
-      outline: none;
-    }
-
   }
 
+  .save-alerts > .success,
+  .save-alerts > .error {
+    width: 300px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+  }
+}
 
+#app.previewMode {
+  .preview {
+    margin: 24px auto;
+    max-width: 900px;
+  }
+}
+
+.page {
+  .icon {
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+  }
+
+  label {
+    color: #606266;
+    display: block;
+    margin: 8px 0;
+    font-size: 14px;
+    text-align: left;
+  }
+
+  input[type="text"],
+  input[type="password"],
+  textarea {
+    color: #606266;
+    font-size: 14px;
+    width: 100%;
+    outline: none;
+    margin: 8px 0;
+    padding: 0 16px;
+    border: 1px solid #dcdfe6;
+    border-radius: 4px;
+  }
+
+  input[type="text"]:focus,
+  input[type="password"]:focus,
+  textarea:focus {
+    border: 1px solid #3e80eb;
+  }
+
+  input[type="text"],
+  input[type="password"] {
+    line-height: 40px;
+    height: 40px;
+  }
+
+  textarea {
+    line-height: 24px;
+  }
+
+  input[type="submit"] {
+    outline: none;
+  }
+}
 </style>
