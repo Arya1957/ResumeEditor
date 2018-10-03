@@ -123,23 +123,24 @@ export default new Vuex.Store({
           address: ''
         },
         education: [
-          {duration: 'xxxx ~ xxxx', school: 'xx大学', major: 'xxxx'}
+          {duration: 'xxxx ~ xxxx', school: 'xx大学', major: 'xx专业'}
         ],
         project: [
-          {projectName: 'xxxx', projectIntro: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'},
+          {projectName: 'xxxx', projectIntro: '详细描述你的职责范围、任务及取得的成绩，工作经验的时间采取倒叙形式，最近经历写在前面，描述尽量具体简洁，工作经验的描述与目标岗位的招聘要求尽量匹配，用词精准。'},
         ],
         workHistory: [
-          {duration: 'xxxx ~ xxxx', company: 'ABC company', job: 'web 前端开发', content: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'},
-          {duration: 'xxxx ~ xxxx', company: 'DEF company', job: 'web 前端开发', content: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'}
+          {duration: 'xxxx ~ xxxx', company: 'ABC company', job: 'web 前端开发', content: '详细描述你的职责范围、工作任务及取得的成绩，工作经验的时间采取倒叙形式，最近经历写在前面，描述尽量具体简洁，工作经验的描述与目标岗位的招聘要求尽量匹配，用词精准。'},
+          {duration: 'xxxx ~ xxxx', company: 'DEF company', job: 'web 前端开发', content: '详细描述你的职责范围、工作任务及取得的成绩，工作经验的时间采取倒叙形式，最近经历写在前面，描述尽量具体简洁，工作经验的描述与目标岗位的招聘要求尽量匹配，用词精准。'}
         ],
         skill: [
           {skillName: 'xxxxxxxxxxx'},
           {skillName: 'xxxxxxxxxxx'}
         ],
         evaluation: [
-          {evaluation: 'xxxxxxx'}
+          {evaluation: '篇幅不要太长，注意结合简历整体的美观度，如果真的有很多话要说，建议以求职信的形式附上。自我评价应做到突出自身符合目标岗位要求的“卖点”，避免过多使用形容词，而应该通过数据及实例来对自身价值进行深化。'}
         ]
       }
+    
      
      // localStorage.setItem('state', JSON.stringify(state));
     },

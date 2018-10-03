@@ -1,8 +1,8 @@
 <template>
   <div id="app" v-bind:class="{previewMode: previewMode}">
     <div class="page">
-        <el-button class="exitPreview" type="danger" v-show="previewMode === true" v-on:click="exitPreview">退出预览
-       </el-button>
+      <el-button class="exitPreview" type="danger" v-show="previewMode === true" v-on:click="exitPreview">退出预览
+      </el-button>
       <TopBar class="topbar" v-on:preview="preview" v-show="previewMode === false"></TopBar>
       <main>
         <Editor class="editor" v-show="previewMode === false"></Editor>
@@ -44,16 +44,6 @@ export default {
       previewMode: false
     };
   },
-  created() {
-    //在页面加载时读取localStorage里的状态信息
-    console.log(this.$store.state);
-
-    // localStorage.getItem("state") && this.$store.replaceState(Object.assign(this.$store.state, JSON.parse(localStorage.getItem("state"))));
-    // //在页面关闭/刷新时将vuex里的信息保存到localStorage里
-    // window.addEventListener("beforeunload", () => {
-    //   localStorage.setItem("state", JSON.stringify(this.$store.state));
-    // })
-  },
   computed: {
     saveSuccess() {
       return this.$store.state.saveSuccess;
@@ -68,7 +58,22 @@ export default {
     },
     exitPreview() {
       this.previewMode = false;
+    } 
+  },
+  created() {
+    let localstate = JSON.parse(localStorage.getItem("state"));
+    if(localstate.user.id) {
+      // 如果用户存在，则将本地缓存与 state合并
+      this.$store.replaceState(Object.assign(this.$store.state, JSON.parse(localStorage.getItem("state"))));
     }
+    //在页面关闭/刷新时将vuex里的信息保存到 localStorage 里
+   window.onbeforeunload = function(e) {
+    return '确定离开此页吗？'; 
+}
+
+    window.addEventListener("beforeunload", (e) => {
+      localStorage.setItem("state", JSON.stringify(this.$store.state));
+    })
   }
 };
 </script>
@@ -100,10 +105,10 @@ body,
     z-index: 1;
   }
   > .exitPreview {
-       position: fixed;
-       top: 10px;
-       right: 10px;
-      }
+    position: fixed;
+    top: 10px;
+    right: 10px;
+  }
 
   > main {
     min-width: 1024px;
@@ -128,7 +133,6 @@ body,
       box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.4);
       border-radius: 4px;
       background: #fff;
-    
     }
   }
   > .save-alerts {
