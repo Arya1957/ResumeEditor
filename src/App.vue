@@ -67,10 +67,9 @@ export default {
       this.$store.replaceState(Object.assign(this.$store.state, JSON.parse(localStorage.getItem("state"))));
     }
     //在页面关闭/刷新时将vuex里的信息保存到 localStorage 里
-   window.onbeforeunload = function(e) {
-    return '确定离开此页吗？'; 
-}
-
+//    window.onbeforeunload = function(e) {
+//     return '确定离开此页吗？'; 
+// }
     window.addEventListener("beforeunload", (e) => {
       localStorage.setItem("state", JSON.stringify(this.$store.state));
     })
