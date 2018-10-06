@@ -50,14 +50,31 @@ export default new Vuex.Store({
     },
 
     resume: {
-      config: [
-        {title: 'profile', icon: 'profile'},
-        {title: 'education', icon: 'education'},
-        {title: 'project', icon: 'project'},
-        {title: 'workHistory', icon: 'workHistory'},
-        {title: 'skill', icon: 'skill'},
-        {title: 'evaluation', icon: 'write'}
-       
+      config: [{
+          title: 'profile',
+          icon: 'profile'
+        },
+        {
+          title: 'education',
+          icon: 'education'
+        },
+        {
+          title: 'project',
+          icon: 'project'
+        },
+        {
+          title: 'workHistory',
+          icon: 'workHistory'
+        },
+        {
+          title: 'skill',
+          icon: 'skill'
+        },
+        {
+          title: 'evaluation',
+          icon: 'write'
+        }
+
       ],
       profile: {
         name: '念念',
@@ -71,23 +88,38 @@ export default new Vuex.Store({
         blog: 'https://www.jianshu.com/u/437babbccf99',
         address: ''
       },
-      education: [
-        {duration: 'xxxx ~ xxxx', school: 'xx大学', major: 'xx专业'}
+      education: [{
+        duration: 'xxxx ~ xxxx',
+        school: 'xx大学',
+        major: 'xx专业'
+      }],
+      project: [{
+        projectName: 'xxxx',
+        projectIntro: '详细描述你的职责范围、任务及取得的成绩，工作经验的时间采取倒叙形式，最近经历写在前面，描述尽量具体简洁，工作经验的描述与目标岗位的招聘要求尽量匹配，用词精准。'
+      }, ],
+      workHistory: [{
+          duration: 'xxxx ~ xxxx',
+          company: 'ABC company',
+          job: 'web 前端开发',
+          content: '详细描述你的职责范围、工作任务及取得的成绩，工作经验的时间采取倒叙形式，最近经历写在前面，描述尽量具体简洁，工作经验的描述与目标岗位的招聘要求尽量匹配，用词精准。'
+        },
+        {
+          duration: 'xxxx ~ xxxx',
+          company: 'DEF company',
+          job: 'web 前端开发',
+          content: '详细描述你的职责范围、工作任务及取得的成绩，工作经验的时间采取倒叙形式，最近经历写在前面，描述尽量具体简洁，工作经验的描述与目标岗位的招聘要求尽量匹配，用词精准。'
+        }
       ],
-      project: [
-        {projectName: 'xxxx', projectIntro: '详细描述你的职责范围、任务及取得的成绩，工作经验的时间采取倒叙形式，最近经历写在前面，描述尽量具体简洁，工作经验的描述与目标岗位的招聘要求尽量匹配，用词精准。'},
+      skill: [{
+          skillName: 'xxxxxxxxxxx'
+        },
+        {
+          skillName: 'xxxxxxxxxxx'
+        }
       ],
-      workHistory: [
-        {duration: 'xxxx ~ xxxx', company: 'ABC company', job: 'web 前端开发', content: '详细描述你的职责范围、工作任务及取得的成绩，工作经验的时间采取倒叙形式，最近经历写在前面，描述尽量具体简洁，工作经验的描述与目标岗位的招聘要求尽量匹配，用词精准。'},
-        {duration: 'xxxx ~ xxxx', company: 'DEF company', job: 'web 前端开发', content: '详细描述你的职责范围、工作任务及取得的成绩，工作经验的时间采取倒叙形式，最近经历写在前面，描述尽量具体简洁，工作经验的描述与目标岗位的招聘要求尽量匹配，用词精准。'}
-      ],
-      skill: [
-        {skillName: 'xxxxxxxxxxx'},
-        {skillName: 'xxxxxxxxxxx'}
-      ],
-      evaluation: [
-        {evaluation: '篇幅不要太长，注意结合简历整体的美观度，如果真的有很多话要说，建议以求职信的形式附上。自我评价应做到突出自身符合目标岗位要求的“卖点”，避免过多使用形容词，而应该通过数据及实例来对自身价值进行深化。'}
-      ]
+      evaluation: [{
+        evaluation: '篇幅不要太长，注意结合简历整体的美观度，如果真的有很多话要说，建议以求职信的形式附上。自我评价应做到突出自身符合目标岗位要求的“卖点”，避免过多使用形容词，而应该通过数据及实例来对自身价值进行深化。'
+      }]
     }
 
   },
@@ -100,15 +132,32 @@ export default new Vuex.Store({
     removeUser(state) {
       state.user.id = '';
       state.dataSaved = true;
-      state.resume =  {
-        config: [
-          {title: 'profile', icon: 'profile'},
-          {title: 'education', icon: 'education'},
-          {title: 'project', icon: 'project'},
-          {title: 'workHistory', icon: 'workHistory'},
-          {title: 'skill', icon: 'skill'},
-          {title: 'evaluation', icon: 'write'}
-         
+      state.resume = {
+        config: [{
+            title: 'profile',
+            icon: 'profile'
+          },
+          {
+            title: 'education',
+            icon: 'education'
+          },
+          {
+            title: 'project',
+            icon: 'project'
+          },
+          {
+            title: 'workHistory',
+            icon: 'workHistory'
+          },
+          {
+            title: 'skill',
+            icon: 'skill'
+          },
+          {
+            title: 'evaluation',
+            icon: 'write'
+          }
+
         ],
         profile: {
           name: '念念',
@@ -122,33 +171,48 @@ export default new Vuex.Store({
           blog: 'https://www.jianshu.com/u/437babbccf99',
           address: ''
         },
-        education: [
-          {duration: 'xxxx ~ xxxx', school: 'xx大学', major: 'xx专业'}
+        education: [{
+          duration: 'xxxx ~ xxxx',
+          school: 'xx大学',
+          major: 'xx专业'
+        }],
+        project: [{
+          projectName: 'xxxx',
+          projectIntro: '详细描述你的职责范围、任务及取得的成绩，工作经验的时间采取倒叙形式，最近经历写在前面，描述尽量具体简洁，工作经验的描述与目标岗位的招聘要求尽量匹配，用词精准。'
+        }, ],
+        workHistory: [{
+            duration: 'xxxx ~ xxxx',
+            company: 'ABC company',
+            job: 'web 前端开发',
+            content: '详细描述你的职责范围、工作任务及取得的成绩，工作经验的时间采取倒叙形式，最近经历写在前面，描述尽量具体简洁，工作经验的描述与目标岗位的招聘要求尽量匹配，用词精准。'
+          },
+          {
+            duration: 'xxxx ~ xxxx',
+            company: 'DEF company',
+            job: 'web 前端开发',
+            content: '详细描述你的职责范围、工作任务及取得的成绩，工作经验的时间采取倒叙形式，最近经历写在前面，描述尽量具体简洁，工作经验的描述与目标岗位的招聘要求尽量匹配，用词精准。'
+          }
         ],
-        project: [
-          {projectName: 'xxxx', projectIntro: '详细描述你的职责范围、任务及取得的成绩，工作经验的时间采取倒叙形式，最近经历写在前面，描述尽量具体简洁，工作经验的描述与目标岗位的招聘要求尽量匹配，用词精准。'},
+        skill: [{
+            skillName: 'xxxxxxxxxxx'
+          },
+          {
+            skillName: 'xxxxxxxxxxx'
+          }
         ],
-        workHistory: [
-          {duration: 'xxxx ~ xxxx', company: 'ABC company', job: 'web 前端开发', content: '详细描述你的职责范围、工作任务及取得的成绩，工作经验的时间采取倒叙形式，最近经历写在前面，描述尽量具体简洁，工作经验的描述与目标岗位的招聘要求尽量匹配，用词精准。'},
-          {duration: 'xxxx ~ xxxx', company: 'DEF company', job: 'web 前端开发', content: '详细描述你的职责范围、工作任务及取得的成绩，工作经验的时间采取倒叙形式，最近经历写在前面，描述尽量具体简洁，工作经验的描述与目标岗位的招聘要求尽量匹配，用词精准。'}
-        ],
-        skill: [
-          {skillName: 'xxxxxxxxxxx'},
-          {skillName: 'xxxxxxxxxxx'}
-        ],
-        evaluation: [
-          {evaluation: '篇幅不要太长，注意结合简历整体的美观度，如果真的有很多话要说，建议以求职信的形式附上。自我评价应做到突出自身符合目标岗位要求的“卖点”，避免过多使用形容词，而应该通过数据及实例来对自身价值进行深化。'}
-        ]
+        evaluation: [{
+          evaluation: '篇幅不要太长，注意结合简历整体的美观度，如果真的有很多话要说，建议以求职信的形式附上。自我评价应做到突出自身符合目标岗位要求的“卖点”，避免过多使用形容词，而应该通过数据及实例来对自身价值进行深化。'
+        }]
       }
-    
-     
-     // localStorage.setItem('state', JSON.stringify(state));
-    },
-    setResume(state, {id, resume}) {
-      state.resume.id = id;
-      console.log(state.resume)
-      console.log(resume)
 
+
+      // localStorage.setItem('state', JSON.stringify(state));
+    },
+    setResume(state, {
+      id,
+      resume
+    }) {
+      state.resume.id = id;
       Object.assign(state.resume, resume);
       //    localStorage.setItem('state', JSON.stringify(state));
     },
@@ -157,7 +221,10 @@ export default new Vuex.Store({
       //   localStorage.setItem('state', JSON.stringify(state));
     },
 
-    updateContent(state, {path, value}) {
+    updateContent(state, {
+      path,
+      value
+    }) {
       objectPath.set(state.resume, path, value);
       state.dataSaved = false
       //  localStorage.setItem('state', JSON.stringify(state));
@@ -171,7 +238,10 @@ export default new Vuex.Store({
 
       //   localStorage.setItem('state', JSON.stringify(state))
     },
-    removeItem(state, {path, index}) {
+    removeItem(state, {
+      path,
+      index
+    }) {
       state.resume[path].splice(index, 1);
       //   state.dataSaved = false
 
@@ -181,7 +251,7 @@ export default new Vuex.Store({
 
   },
   actions: {
-    createResume({state, commit, dispatch}) {
+    createResume({ state,  commit,    dispatch  }) {
       let dataStr = JSON.stringify(state.resume);
       let Resume = AV.Object.extend("Resume"); // 新建对象
       let resume = new Resume(); // 设置名称
@@ -189,42 +259,59 @@ export default new Vuex.Store({
       let acl = new AV.ACL();
       acl.setReadAccess(AV.User.current(), true); // 只有这个用户可读
       acl.setWriteAccess(AV.User.current(), true); // 只有这个用户可写
-      resume.setACL(acl);  // 将 ACL 实例赋予 resume 对象， 添加访问控制
-      resume.save().then(function (resume) {
+      resume.setACL(acl); // 将 ACL 实例赋予 resume 对象， 添加访问控制
+
+      resume.save().then((resume) => {
           state.dataSaved = true;
-     //     console.log('这是创建简历');
+          //     console.log('这是创建简历');
           let resumeData = JSON.parse(resume.attributes.resume);
-          let id = resumes.id;
-          commit('setResume', {id, resumeData});
+          let id = resume.id;
+          commit('setResume', { id,   resumeData   });
           dispatch('saveSuccess');
-        }, () => dispatch('saveError')
-      )
+        },
+        () => dispatch('saveError'))
     },
-    updateResume({state, commit, dispatch}) {
+
+    updateResume({
+      state,
+      commit,
+      dispatch
+    }) {
       //  console.log(state.resume.id);
       let resume = AV.Object.createWithoutData('Resume', state.resume.id);
       let dataStr = JSON.stringify(state.resume);
       resume.set('resume', dataStr);
       resume.save().then((resume) => {
-          state.dataSaved = true;
-       //   console.log('这是更新简历');
-          let resumeData = JSON.parse(resume.attributes.resume);
-          let id = resume.id;
-          commit('setResume', {id, resumeData});
-          dispatch('saveSuccess');
-        }, () => dispatch('saveError')
-      )
+        state.dataSaved = true;
+        //   console.log('这是更新简历');
+        let resumeData = JSON.parse(resume.attributes.resume);
+        let id = resume.id;
+        commit('setResume', {
+          id,
+          resumeData
+        });
+
+        dispatch('saveSuccess');
+      }, () => dispatch('saveError'))
 
     },
-    createOrUpdateResume({dispatch, state}) {
+    createOrUpdateResume({
+      dispatch,
+      state
+    }) {
+    
       let resumeId = state.resume.id;
+
       if (resumeId) {
         dispatch('updateResume')
       } else {
         dispatch('createResume')
       }
     },
-    fetchResume({state, commit}) {
+    fetchResume({
+      state,
+      commit
+    }) {
       let query = new AV.Query('Resume');
 
       query.find().then((resumes) => {
@@ -233,15 +320,22 @@ export default new Vuex.Store({
           let resume = JSON.parse(resumes[0].attributes.resume);
           let id = resumes[0].id;
 
-          commit('setResume', {id, resume});
+          commit('setResume', {
+            id,
+            resume
+          });
         }
       }, () => dispatch('saveError'))
     },
-    saveSuccess({state}) {
+    saveSuccess({
+      state
+    }) {
       state.saveSuccess = true;
       setTimeout(() => state.saveSuccess = false, 2000)
     },
-    saveError({state}) {
+    saveError({
+      state
+    }) {
       state.saveError = true;
       setTimeout(() => state.saveError = false, 2000)
     }
@@ -267,5 +361,3 @@ export default new Vuex.Store({
 // console.log(obj);
 // objectPath.del(obj,["a","test1",0]);
 // console.log(obj);
-
-

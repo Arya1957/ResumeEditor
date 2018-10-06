@@ -3,6 +3,7 @@
     <div class="logo">
       Resume Editor
     </div>
+     
     <div class="actions">
       <div v-if="logined">
         <span class="welcome">你好， {{ user.username }}</span>
